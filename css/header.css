@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Header nhỏ */
+.top-header {
+    background-color: #264653;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    align-items: center;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-around;
+    height: 13px;
+}
+
+.top-header i {
+    margin: 0 10px;
+    font-size: 18px;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.top-header i:hover {
+    color: #000;
+}
+
+header {
+    background-color: white;
+    color: white;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+
+}
+
+.logo img {
+    width: 150px;
+    padding-left: 150px;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 70%;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+
+}
+
+nav ul li a {
+    text-decoration: none;
+    color:  #600080;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    font-size: 20px;
+    display: inline-block;
+    line-height: 40px;
+    padding: 30px 15px;
+}
+
+nav ul li a:hover {
+    color: #e9c46a;
+    border-radius: 20px;
+}
+
+.login-Button {
+    display: flex;
+    gap: 10px;
+}
+
+.login-Button {
+    text-decoration: none;
+    background-color: white;
+    color:  #600080;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+}
+
+.login-Button:hover {
+    background-color: #e9c46a;
+    color: white;
+    cursor: pointer;
+}
+
+.phone-number {
+    display: flex;
+    color: #ff00ff;
+    font-weight: bold;
+    padding-left: 20px;
+}
+.phone-number:hover{
+    color: #e9c46a;
+}
