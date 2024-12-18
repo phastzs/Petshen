@@ -114,3 +114,258 @@ nav ul li a:hover {
 .phone-number:hover{
     color: #e9c46a;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* phatcss */
+        /* Tổng thể Modal */
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.6);
+      }
+
+      /* Nội dung Modal */
+      .modal-content {
+          background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+          margin: 10% auto;
+          padding: 20px;
+          width: 400px;
+          border-radius: 15px;
+          color: white;
+          text-align: center;
+          box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Tiêu đề */
+      .modal-content h2 {
+          margin-bottom: 20px;
+          font-size: 24px;
+          font-weight: bold;
+          color: #f1eaff;
+      }
+
+      /* Nhóm Form */
+      .form-group {
+          margin-bottom: 15px;
+          text-align: left;
+      }
+      .form-group label {
+          font-size: 14px;
+          color: #e0c3fc;
+          margin-bottom: 5px;
+          display: block;
+      }
+      .form-group input {
+          width: 95%;
+          padding: 12px;
+          border: none;
+          border-radius: 8px;
+          background-color: #f3e9ff;
+          color: #5a189a;
+          font-size: 14px;
+          outline: none;
+          transition: box-shadow 0.3s ease;
+      }
+      .form-group input:focus {
+          box-shadow: 0px 0px 5px #d8b4fe;
+      }
+
+      /* Nút hành động */
+      .btn-success {
+          background-color: #5a189a;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 8px;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+
+
+      }
+      .btn-success:hover {
+          background-color: #4c1180;
+          transform: scale(1.05);
+      }
+
+      /* Nút đóng */
+      .close {
+          position: absolute;
+          top: 15px;
+          right: 20px;
+          color: #e0c3fc;
+          font-size: 28px; /* Tăng kích thước */
+          cursor: pointer;
+      }
+      .close:hover {
+          color: white;
+      }
+
+      /* Gợi ý đăng ký */
+      p {
+          margin-top: 20px;
+          font-size: 14px;
+      }
+      p a {
+          color: #ffd6ff;
+          text-decoration: none;
+          font-weight: bold;
+          transition: color 0.3s ease;
+      }
+      p a:hover {
+          color: #ffffff;
+      }
+      .password-group {
+  position: relative; /* Đặt vị trí cho nhóm mật khẩu */
+}
+
+.password-group .show-password {
+  position: absolute; /* Đặt vị trí tuyệt đối */
+  top: 5px; /* Điều chỉnh khoảng cách với ô input */
+  right: 0px; /* Đặt nút hiển thị ở phía bên phải */
+  background: none; /* Không có nền */
+  border: none; /* Không có viền */
+  cursor: pointer; /* Hiển thị con trỏ khi di chuột qua */
+  color: #5a189a; /* Màu chữ cho nút */
+  font-size: 20px; /* Kích thước chữ cho nút */
+}
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group input[type="checkbox"] {
+  width: auto; /* Đặt độ rộng của ô tích */
+  margin-right: 5px; /* Khoảng cách bên phải ô tích */
+}
+
+.form-group a {
+  color: #5a189a; /* Màu chữ cho liên kết */
+  text-decoration: none; /* Bỏ gạch chân cho liên kết */
+}
+
+.form-group a:hover {
+  text-decoration: underline; /* Gạch chân liên kết khi hover */
+}
+.remember-forgot {
+  display: flex; /* Sử dụng Flexbox để căn chỉnh các phần tử */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: space-between; /* Đặt khoảng cách đều giữa các phần tử */
+  margin-top: 10px; /* Khoảng cách trên nhóm */
+}
+
+.remember-forgot input[type="checkbox"] {
+  margin-right: 5px; /* Khoảng cách bên phải ô tích */
+  margin-top: -3px;
+}
+
+.remember-forgot label {
+font-size: 17px;
+margin-right: auto; /* Đẩy nhãn gần ô tích hơn */
+}
+
+.remember-forgot a {
+  margin-bottom: 8px;
+  color: #5a189a; /* Màu chữ cho liên kết */
+  text-decoration: none; /* Bỏ gạch chân cho liên kết */
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline; /* Gạch chân liên kết khi hover */
+}
+#usernameDisplay,#welcomeMessage {
+color: #5a189a ;
+
+}
+
+/* Dropdown container */
+.user-menu {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 0;
+}
+
+.user-menu:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+  color: #4CAF50;
+}
+
+/* Submenu container */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu-content {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background-color: #fff;
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dropdown-submenu:hover .dropdown-submenu-content {
+  display: block;
+  color: #4CAF50;
+}
+
+.dropdown-submenu-content a {
+  padding: 8px 16px;
+}
+
+.dropdown-divider {
+  height: 1px;
+  margin: 8px 0;
+  background-color: #ddd;
+}
+
+.dropdown-header {
+  font-size: 14px;
+  font-weight: bold;
+  color: #4CAF50;
+  padding: 8px 16px;
+  display: block;
+}
+
