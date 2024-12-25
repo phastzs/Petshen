@@ -4,9 +4,15 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 session_start();
 
 if (!isset($_SESSION['userID']) && isset($_COOKIE['userID']) && isset($_COOKIE['userName'])) {
-  $_SESSION['userID'] = base64_decode($_COOKIE['userID']);
-  $_SESSION['userName'] = base64_decode($_COOKIE['userName']);
+  $decodedUserID = base64_decode($_COOKIE['userID']);
+  $decodedUserName = base64_decode($_COOKIE['userName']);
+
+  if ($decodedUserID && $decodedUserName) { // Kiểm tra giải mã thành công
+      $_SESSION['userID'] = $decodedUserID;
+      $_SESSION['userName'] = $decodedUserName;
+  }
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -17,13 +23,14 @@ if (!isset($_SESSION['userID']) && isset($_COOKIE['userID']) && isset($_COOKIE['
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PetShop Online</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
     integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/header.css">
-</head>
+  <link rel="stylesheet" href="http://localhost/Hoc_PHP/AppPetShop/css/header.css">
+  </head>
 
 <body>
   <!-- Top header mới -->
@@ -39,12 +46,29 @@ if (!isset($_SESSION['userID']) && isset($_COOKIE['userID']) && isset($_COOKIE['
 
   <header>
   <div class="logo">
-    <a href="index.php"><img src="images/logo.png" alt="PetShop Logo"></a>
+    <a href="http://localhost/Hoc_PHP/AppPetShop/index.php"><img src="http://localhost/Hoc_PHP/AppPetShop/images/logo.png" alt="PetShop Logo"></a>
 </div>
 <nav>
     <ul>
-        <li><a href="index.php">Trang chủ</a></li>
-        <li><a href="products.php">Sản phẩm +</a></li>
+        <li><a href="http://localhost/Hoc_PHP/AppPetShop/index.php">Trang chủ</a></li>
+        <li class="dropdown22">
+    <a href="products.php">Sản phẩm +</a>
+    <ul class="dropdown-menu22">
+        <?php
+        // Giả sử kết nối database đã thành công
+        include 'config/db.php';
+        $query = "SELECT categoryID, categoryName FROM Categories WHERE parentCategoryID IS NULL";
+        $result = $conn->query($query);
+
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<li><a href="products.php?category=' . $row['categoryID'] . '">' . htmlspecialchars($row['categoryName']) . '</a></li>';
+            }
+        }
+        ?>
+    </ul>
+</li>
+
         <li><a href="about.php">Giới thiệu</a></li>
         <li><a href="contact.php">Liên hệ</a></li>
         <li><a href="cart.php"><i class="fas fa-shopping-bag shopping-bag"></i></a></li>
@@ -56,19 +80,19 @@ if (!isset($_SESSION['userID']) && isset($_COOKIE['userID']) && isset($_COOKIE['
             <span id="welcomeMessage"><i class="fa-solid fa-user"></i> Xin chào, <?php echo htmlspecialchars($_SESSION['userName']); ?></span>
             <span class="triangle"></span> <!-- Mũi nhọn -->
             <div class="dropdown-content">
-                <a href="settings.php">Cài đặt</a>
-                <a href="users/profile.php">Hồ sơ</a>
-                <a href="payment.php">Thanh toán</a>
-                <a href="logout.php" id="logoutButton" onclick="confirmLogout(event);">Đăng Xuất</a>
+                <a href="http://localhost/Hoc_PHP/AppPetShop/settings.php">Cài đặt</a>
+                <a href="http://localhost/Hoc_PHP/AppPetShop/users/profile.php">Hồ sơ</a>
+                <a href="http://localhost/Hoc_PHP/AppPetShop/payment.php">Thanh toán</a>
+                <a onclick="confirmLogout(event);">Đăng Xuất</a>
 
                 <?php if ($_SESSION['role'] === 'staff' || $_SESSION['role'] === 'admin'): ?>
                     <div class="dropdown-divider"></div> <!-- Đường phân cách -->
                     <div class="dropdown-submenu">
                         <span class="dropdown-header">Quản lý</span>
                         <div class="dropdown-submenu-content">
-                            <a href="manage_users.php">Quản lý người dùng</a>
-                            <a href="manage_products.php">Quản lý hàng hóa</a>
-                            <a href="manage_discounts.php">Quản lý mã giảm giá</a>
+                            <a href="http://localhost/Hoc_PHP/AppPetShop/UserManages/userManages/manage_users.php">Quản lý người dùng</a>
+                            <a href="http://localhost/Hoc_PHP/AppPetShop/UserManages/productManages/manage_products.php">Quản lý hàng hóa</a>
+                            <a href="http://localhost/Hoc_PHP/AppPetShop/UserManages/Discount/manage_discounts.php">Quản lý mã giảm giá</a>
                         </div>
                     </div>
                 <?php endif; ?>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+include 'C:\xampp\htdocs\Hoc_PHP\AppPetShop\header.php';
 require '../config/db.php'; // Kết nối database
 
 // Kiểm tra người dùng đã đăng nhập chưa
@@ -98,7 +98,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+<div class="header-container">
+    <a href="../" class="back-button">Quay về</a>
     <h1>Hồ Sơ Cá Nhân</h1>
+</div>
+
 
     <?php if ($success): ?>
         <p style="color: green;"><?= $success ?></p>

@@ -132,3 +132,56 @@ ul[style="color: red;"] {
       padding: 12px;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Header Container */
+.header-container {
+  display: flex;
+  align-items: center;
+  margin: 20px;
+  justify-content: flex-start;
+}
+
+/* Back Button */
+.back-button {
+  margin-right: 20px;
+  padding: 8px 16px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+
+/* Title */
+.header-container h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #4CAF50;
+}
+

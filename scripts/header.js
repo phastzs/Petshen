@@ -149,7 +149,7 @@ function confirmLogout(event) {
     }).then((result) => {
         if (result.isConfirmed) {
             // Chuyển hướng đến logout.php nếu xác nhận
-            window.location.href = 'logout.php';
+            window.location.href = '/Hoc_PHP/AppPetShop/logout.php';
         }
     });
 }

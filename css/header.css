@@ -369,3 +369,57 @@ color: #5a189a ;
   display: block;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* header22  em phat*/
+/* Đảm bảo menu con ẩn ban đầu */
+.dropdown22 {
+  position: relative; /* Cần thiết để dropdown-menu22 bám theo */
+}
+
+.dropdown22 .dropdown-menu22 {
+  display: none; /* Ẩn menu con ban đầu */
+  position: absolute; /* Giúp menu hiển thị ngay dưới "Sản phẩm +" */
+  top: 100%;
+  left: 0;
+  background-color: #fff; /* Màu nền cho dropdown */
+  border: 1px solid #ddd; /* Đường viền */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+  padding: 0; /* Xóa padding mặc định */
+  margin: 0;
+  list-style: none;
+  z-index: 1000; /* Đảm bảo menu hiển thị trên tất cả */
+  width: 200px; /* Độ rộng của dropdown menu */
+}
+
+.dropdown22 .dropdown-menu22 li {
+  padding: 10px 15px; /* Tăng khoảng cách cho mục trong menu */
+}
+
+.dropdown22 .dropdown-menu22 li a {
+  color: #333; /* Màu chữ */
+  text-decoration: none;
+  display: block; /* Đảm bảo chiếm toàn bộ dòng */
+}
+
+.dropdown22 .dropdown-menu22 li a:hover {
+  background-color: #f5f5f5; /* Hiệu ứng hover */
+}
+
+/* Hiển thị dropdown khi hover vào mục chính */
+.dropdown22:hover .dropdown-menu22 {
+  display: block; /* Hiện menu con */
+}
+
