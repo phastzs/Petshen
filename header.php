@@ -52,7 +52,7 @@ if (!isset($_SESSION['userID']) && isset($_COOKIE['userID']) && isset($_COOKIE['
     <ul>
         <li><a href="http://localhost/Hoc_PHP/AppPetShop/index.php">Trang chủ</a></li>
         <li class="dropdown22">
-    <a href="products.php">Sản phẩm +</a>
+    <a href="http://localhost/Hoc_PHP/AppPetShop/products_main/products.php">Sản phẩm +</a>
     <ul class="dropdown-menu22">
         <?php
         // Giả sử kết nối database đã thành công
@@ -62,7 +62,7 @@ if (!isset($_SESSION['userID']) && isset($_COOKIE['userID']) && isset($_COOKIE['
 
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                echo '<li><a href="products.php?category=' . $row['categoryID'] . '">' . htmlspecialchars($row['categoryName']) . '</a></li>';
+                echo '<li><a href="http://localhost/Hoc_PHP/AppPetShop/products_main/products.php?category=' . $row['categoryID'] . '">' . htmlspecialchars($row['categoryName']) . '</a></li>';
             }
         }
         ?>

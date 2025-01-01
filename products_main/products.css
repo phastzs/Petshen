@@ -1,0 +1,152 @@
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for the entire page */
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+/* Product breadcrumb */
+.product-breadcrumb {
+  font-size: 18px;
+}
+
+/* Price filter styles */
+.price-filter {
+  display: flex;
+  align-items: center;
+}
+
+.price-filter .dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.price-filter .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.price-filter .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Product grid styles */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 sản phẩm mỗi hàng */
+  gap: 20px; /* Khoảng cách giữa các sản phẩm */
+  margin-top: 20px;
+}
+
+/* Product card styles */
+.product-card {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.05); /* Hiệu ứng phóng to khi hover */
+}
+
+/* Product image styles */
+.product-image {
+  height: 330px; /* Chiều cao sản phẩm */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Product info styles */
+.product-info {
+  padding: 10px;
+}
+
+.product-info div {
+  margin: 5px 0;
+}
+
+/* Icons styles */
+.icons {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.icon {
+  margin: 0 10px;
+  color: #5A189A; /* Màu sắc của biểu tượng */
+}
+
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination a {
+  margin: 0 5px;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border-radius: 5px;
+}
+
+.pagination a:hover {
+  background-color: #5A189A; /* Màu hover cho trang */
+}
+
+.active-page {
+  background-color: #5A189A; /* Màu cho trang đang hoạt động */
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .product-grid {
+      grid-template-columns: repeat(4, 1fr); /* 4 sản phẩm mỗi hàng */
+  }
+}
+
+@media (max-width: 992px) {
+  .product-grid {
+      grid-template-columns: repeat(3, 1fr); /* 3 sản phẩm mỗi hàng */
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 sản phẩm mỗi hàng */
+  }
+}
+
+@media (max-width: 576px) {
+  .product-grid {
+      grid-template-columns: 1fr; /* 1 sản phẩm mỗi hàng */
+  }
+}
