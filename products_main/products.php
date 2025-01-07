@@ -13,7 +13,7 @@ if ($page < 1) $page = 1;
 $offset = ($page - 1) * $itemsPerPage;
 
 // Lấy giá trị từ GET
-$filter = isset($_GET['filter']) ? $_GET['filter'] : null;
+$filter = isset($_GET['filter']) ? (int)$_GET['filter'] * 1000 : null;
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'newest';
 
 // Tính tổng số sản phẩm
@@ -34,16 +34,20 @@ if ($filter) {
     $query .= " WHERE price > $filter";
 }
 
+
 // Thêm phần sắp xếp vào truy vấn
 switch ($sort) {
-    case 'high':
-        $query .= " ORDER BY price DESC";
-        break;
-    case 'low':
-        $query .= " ORDER BY price ASC";
-        break;
-    default:
-        $query .= " ORDER BY createdAt DESC"; // Mặc định: mới nhất
+  case 'high':
+      $query .= " ORDER BY price DESC";
+      break;
+  case 'low':
+      $query .= " ORDER BY price ASC";
+      break;
+  case 'all':
+      // Nếu chọn "Tất cả sản phẩm", không sắp xếp gì cả
+      break;
+  default:
+      $query .= " ORDER BY createdAt DESC"; // Mặc định: mới nhất
 }
 
 // Thêm LIMIT và OFFSET
@@ -92,7 +96,10 @@ if (!$result) {
             <option value="newest" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'newest') ? 'selected' : ''; ?>>Mới nhất</option>
             <option value="high" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'high') ? 'selected' : ''; ?>>Giá cao nhất</option>
             <option value="low" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'low') ? 'selected' : ''; ?>>Giá thấp nhất</option>
+            <option value="all" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'all') ? 'selected' : ''; ?>>Tất cả sản phẩm</option>
+
         </select>
+
     </form>
 </div>
 

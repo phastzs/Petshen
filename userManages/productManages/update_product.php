@@ -4,8 +4,8 @@ include 'C:\xampp\htdocs\Hoc_PHP\AppPetShop\config\db.php';
 // Kiểm tra quyền truy cập
 session_start();
 if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'staff')) {
-  echo "<div class='alert'>Bạn không có quyền truy cập trang này.</div>";
-  exit();
+    echo "<div class='alert'>Bạn không có quyền truy cập trang này.</div>";
+    exit();
 }
 
 // Lấy thông tin từ biểu mẫu
@@ -20,6 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dimensions = $_POST['dimensions'];
     $isFeatured = isset($_POST['isFeatured']) ? 1 : 0;
 
+    // Truy vấn để lấy giá trị imageUrl hiện tại
+    $currentImageQuery = "SELECT imageUrl FROM products WHERE productID = ?";
+    $currentImageStmt = $conn->prepare($currentImageQuery);
+    $currentImageStmt->bind_param("s", $productID);
+    $currentImageStmt->execute();
+    $currentImageStmt->bind_result($currentImageUrl);
+    $currentImageStmt->fetch();
+    $currentImageStmt->close();
+
     // Kiểm tra xem có tải lên hình ảnh không
     if (isset($_FILES['imageUpload']) && $_FILES['imageUpload']['error'] === UPLOAD_ERR_OK) {
         $imageUrl = 'uploads/' . basename($_FILES['imageUpload']['name']);
@@ -30,10 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($query);
         $stmt->bind_param("ssdsississ", $name, $description, $price, $categoryID, $stockQuantity, $weight, $dimensions, $isFeatured, $imageUrl, $productID);
     } else {
-        // Nếu không tải lên hình ảnh, cập nhật mà không thay đổi imageUrl
-        $query = "UPDATE products SET name=?, description=?, price=?, categoryID=?, stockQuantity=?, weight=?, dimensions=?, isFeatured=? WHERE productID=?";
+        // Nếu không tải lên hình ảnh, sử dụng imageUrl hiện tại
+        $imageUrl = $currentImageUrl; // Giữ nguyên giá trị hình ảnh hiện tại
+        $query = "UPDATE products SET name=?, description=?, price=?, categoryID=?, stockQuantity=?, weight=?, dimensions=?, isFeatured=?, imageUrl=? WHERE productID=?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("ssdsisss", $name, $description, $price, $categoryID, $stockQuantity, $weight, $dimensions, $isFeatured, $productID);
+        $stmt->bind_param("ssdsississ", $name, $description, $price, $categoryID, $stockQuantity, $weight, $dimensions, $isFeatured, $imageUrl, $productID);
     }
 
     if ($stmt->execute()) {

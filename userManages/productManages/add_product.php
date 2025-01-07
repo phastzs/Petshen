@@ -4,8 +4,8 @@ include 'C:\xampp\htdocs\Hoc_PHP\AppPetShop\config\db.php';
 
 // Kiểm tra quyền truy cập
 if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'staff')) {
-  echo "<div class='alert'>Bạn không có quyền truy cập trang này.</div>";
-  exit();
+    echo "<div class='alert'>Bạn không có quyền truy cập trang này.</div>";
+    exit();
 }
 
 // Tạo mã sản phẩm tự động
@@ -28,7 +28,7 @@ $categoriesResult = $conn->query($categoriesQuery);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $description = $_POST['description'];
-    $price = $_POST['price'];
+    $price = str_replace(',', '', $_POST['price']);
     $categoryID = $_POST['categoryID'];
     $stockQuantity = $_POST['stockQuantity'];
     $weight = $_POST['weight'];
@@ -66,13 +66,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thêm Sản phẩm</title>
   <link rel="stylesheet" href="../manage.css">
+  <script>
+    function formatCurrency(input) {
+        let value = input.value.replace(/\D/g, '');
+        input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function convertToNumber(input) {
+        let value = input.value.replace(/,/g, '');
+        input.value = value;
+    }
+    function previewImage(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function() {
+                const imagePreview = document.getElementById('imagePreview');
+                imagePreview.src = reader.result; // Gán URL hình ảnh xem trước
+                imagePreview.style.display = 'block'; // Hiển thị hình ảnh xem trước
+                document.getElementById('noImage').style.display = 'none'; // Ẩn thông báo "Chưa có ảnh"
+            }
+
+            if (file) {
+                reader.readAsDataURL(file); // Đọc hình ảnh như một URL
+            }
+        }
+  </script>
 </head>
 <body>
   <div class="user-management-container">
     <h1 class="user-management-header">Thêm Sản Phẩm</h1>
 
     <!-- Form thêm sản phẩm -->
-    <form method="POST" action="" enctype="multipart/form-data">
+    <form method="POST" action="" enctype="multipart/form-data" onsubmit="convertToNumber(document.getElementById('price'));">
       <label for="productID">ID Sản phẩm (Tự động)</label>
       <input type="text" id="productID" name="productID" value="<?= $newProductID ?>" readonly>
 
@@ -83,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <textarea id="description" name="description" rows="4" placeholder="Nhập mô tả sản phẩm"></textarea>
 
       <label for="price">Giá</label>
-      <input type="number" id="price" name="price" placeholder="Nhập giá sản phẩm" step="0.01" required>
+      <input type="text" id="price" name="price" placeholder="Nhập giá sản phẩm" oninput="formatCurrency(this)" required>
 
       <label for="categoryID">Danh mục</label>
       <select id="categoryID" name="categoryID" required>
@@ -107,8 +133,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <label for="isFeatured">Nổi bật</label>
       <input type="checkbox" id="isFeatured" name="isFeatured">
 
-      <label for="imageFile">Hình ảnh</label>
-      <input type="file" id="imageFile" name="imageFile" accept="image/*" required>
+      <label for="imageUpload">Hình Ảnh</label>
+<input type="file" id="imageUpload" name="imageUpload" accept="image/*" onchange="previewImage(event)">
+
+ <!-- Phần hiển thị hình ảnh xem trước -->
+ <div id="imagePreviewContainer">
+                <img id="imagePreview" src="#" alt="Hình ảnh sản phẩm xem trước" width="150" height="150" style="display: none; margin-top: 10px;">
+                <p id="noImage" style="display: block; margin-top: 10px;">Chưa có ảnh</p>
+            </div>
 
       <div class="discount-btn-container">
         <button type="submit" class="discount-btn discount-btn-success">Thêm Sản phẩm</button>
