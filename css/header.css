@@ -116,9 +116,97 @@ nav ul li a:hover {
 }
 
 
+nav .cart-btn {
+  background-color: transparent; /* Làm cho nền trong suốt */
+  color: #000; /* Màu chữ giống như màu liên kết */
+  font-weight: bold;
+  font-size: 24px;
+  border: none;
+  padding: 10px 15px;
+  display: inline-block;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  line-height: 40px;
+}
+
+nav .cart-btn:hover {
+  color: #FFD700; /* Màu chữ khi hover */
+
+}
 
 
+/* Giỏ hàng nằm bên phải với hiệu ứng trượt */
+.cart-container {
+  position: absolute;
+  top: 60%;
+  right: -300px; /* Ban đầu, giỏ hàng nằm ngoài màn hình */
+  width: 300px;
+  height: 100%;
+  background-color: #fff;
+  border: 2px solid #000;
+  border-radius: 20px;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 1000;
+  opacity: 0; /* Ẩn giỏ hàng khi không hiển thị */
+  transform: scale(0.5); /* Giảm kích thước khi ẩn */
+  transition: right 0.5s ease, opacity 0.5s ease, transform 0.5s ease; /* Thêm hiệu ứng cho right, opacity và transform */
+}
 
+/* Khi giỏ hàng xuất hiện */
+.show-cart {
+  right: 21%; /* Đưa giỏ hàng vào trong màn hình */
+  opacity: 1; /* Hiển thị giỏ hàng */
+  transform: scale(1); /* Phóng to giỏ hàng */
+}
+
+/* Các phần khác không thay đổi */
+.cart-header {
+  background-color: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px;
+  border-radius: 20px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.cart-header p {
+  font-family: 'Montserrat', sans-serif;
+  padding-top: 10px;
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+
+  color: #000;
+}
+
+.cart-btn.active {
+  background-color: #FDFDD4; /* Hoặc màu bạn muốn khi đang ở trạng thái giỏ hàng */
+  color: #FFD700;
+}
+
+.cart-items {
+  margin-top: 20px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.cart-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.checkout-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
 
 
 

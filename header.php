@@ -71,8 +71,7 @@ if (!isset($_SESSION['userID']) && isset($_COOKIE['userID']) && isset($_COOKIE['
 
         <li><a href="about.php">Giới thiệu</a></li>
         <li><a href="contact.php">Liên hệ</a></li>
-        <li><a href="cart.php"><i class="fas fa-shopping-bag shopping-bag"></i></a></li>
-    </ul>
+        <li><button class="cart-btn" id="toggle-cart-btn" ><i class="fa-solid fa-bag-shopping"></i></button></li>    </ul>
     <!-- User Status Dropdown -->
     <div id="userStatus">
     <?php if (isset($_SESSION['userID'])): ?>

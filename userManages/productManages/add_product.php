@@ -36,12 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isFeatured = isset($_POST['isFeatured']) ? 1 : 0;
 
     // Xử lý upload ảnh
-    $imageFile = $_FILES['imageFile'];
+    $imageUpload = $_FILES['imageUpload']; // Thay đổi từ imageFile thành imageUpload
     $uploadDir = 'uploads/';
-    $uploadFile = $uploadDir . basename($imageFile['name']);
+    $uploadFile = $uploadDir . basename($imageUpload['name']);
     $imageUrl = '';
 
-    if (move_uploaded_file($imageFile['tmp_name'], $uploadFile)) {
+    if (move_uploaded_file($imageUpload['tmp_name'], $uploadFile)) { // Thay đổi từ imageFile thành imageUpload
         $imageUrl = $uploadFile;
     } else {
         echo "<div class='alert'>Lỗi: Không thể upload ảnh.</div>";
@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
